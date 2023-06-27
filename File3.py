@@ -20,10 +20,10 @@ def create_tables_sqlite(conn):
         create_table1_query = """
         CREATE TABLE sales (
             sales_id INTEGER,
-            customer_name TEXT,
-            car_model TEXT,
-            purchase_date TEXT,
-            purchase_amount REAL
+            customer_name string,
+            car_model string,
+            purchase_date date,
+            purchase_amount float
         )
         """
         cursor_sqlite.execute(create_table1_query)
@@ -32,10 +32,10 @@ def create_tables_sqlite(conn):
         create_table2_query = """
         CREATE TABLE insurance (
             policy_id INTEGER,
-            customer_name TEXT,
-            car_model TEXT,
-            policy_type TEXT,
-            premium_amount REAL
+            customer_name string,
+            car_model string,
+            policy_type string,
+            premium_amount float
         )
         """
         cursor_sqlite.execute(create_table2_query)
@@ -44,10 +44,10 @@ def create_tables_sqlite(conn):
         create_table3_query = """
         CREATE TABLE finance (
             finance_id INTEGER,
-            customer_name TEXT,
-            car_model TEXT,
-            loan_amount REAL,
-            interest_rate REAL
+            customer_name string,
+            car_model string,
+            loan_amount float,
+            interest_rate float
         )
         """
         cursor_sqlite.execute(create_table3_query)
@@ -56,10 +56,10 @@ def create_tables_sqlite(conn):
         create_table4_query = """
         CREATE TABLE Crm (
             customer_id INTEGER,
-            customer_name TEXT,
-            email TEXT,
-            phone_number TEXT,
-            city TEXT
+            customer_name string,
+            email string,
+            phone_number string,
+            city string
         )
         """
         cursor_sqlite.execute(create_table4_query)
@@ -68,10 +68,10 @@ def create_tables_sqlite(conn):
         create_table5_query = """
         CREATE TABLE hr (
             employee_id INTEGER,
-            employee_name TEXT,
-            department TEXT,
-            position TEXT,
-            hire_date TEXT
+            employee_name string,
+            department string,
+            position string,
+            hire_date date
         )
         """
         cursor_sqlite.execute(create_table5_query)
@@ -80,10 +80,10 @@ def create_tables_sqlite(conn):
         create_table6_query = """
         CREATE TABLE it_department (
             ticket_id INTEGER,
-            issue TEXT,
-            priority TEXT,
-            assigned_to TEXT,
-            status TEXT
+            issue string,
+            priority string,
+            assigned_to string,
+            status string
         )
         """
         cursor_sqlite.execute(create_table6_query)
