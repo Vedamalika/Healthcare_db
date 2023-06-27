@@ -111,7 +111,6 @@ create_tables(snowflake_cursor)
 
 
 
-
 snowflake_cursor.close()
 snowflake_conn.close()
 
