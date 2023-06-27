@@ -97,9 +97,7 @@ def create_tables(snowflake_cursor):
         snowflake_cursor.execute(create_table6_query)
         print("Table 'it_department' is created successfully")
 
-        snowflake_cursor.close()
-        snowflake_conn.close()
-
+    
     except snowflake.connector.Error as e:
         print("Snowflake Error: {0}".format(e))
 
@@ -108,5 +106,13 @@ def create_tables(snowflake_cursor):
 
 create_tables(snowflake_cursor)
 
-fake = Faker()
+
+
+
+
+
+
+snowflake_cursor.close()
+snowflake_conn.close()
+
 
