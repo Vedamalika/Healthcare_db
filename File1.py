@@ -6,8 +6,8 @@ snowflake_config = {
     'user': 'VEDAMALIKA',
     'password': '9@Vedasai',
     'account': 'qf67219.ap-southeast-1',
-    'warehouse': 'HEALTHCARE_DB_WH',
-    'database': 'Healthcare',
+    'warehouse': 'Automobile_db',
+    'database': 'Automobile',
     'schema': 'PUBLIC'
 }
     
