@@ -108,7 +108,7 @@ def create_tables(snowflake_cursor):
     except Exception as e:
         print("Error: {0}".format(e))
 
-create_tables(snowflake_cursor)
+# create_tables(snowflake_cursor)
 
 
 #inserting data into sales table
@@ -260,8 +260,8 @@ def insert_data_into_hr(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-insert_data_into_hr(snowflake_conn, snowflake_cursor)
-print("Data inserted into hr table")
+# insert_data_into_hr(snowflake_conn, snowflake_cursor)
+# print("Data inserted into hr table")
 
 
 #inserting data into It table
@@ -293,9 +293,41 @@ def insert_data_into_It(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-insert_data_into_It(snowflake_conn, snowflake_cursor)
-print("Data inserted into It table")
+# insert_data_into_It(snowflake_conn, snowflake_cursor)
+# print("Data inserted into It table")
+
+
+# creating the stream objects for each table to track the dml operations
+def create_stream(stream_table, table_name):
+        try:
+        # Create the stream
+            create_stream_query = f"CREATE STREAM {stream_table} ON TABLE {table_name}"
+            snowflake_cursor.execute(create_stream_query)
+            print(f"Stream {stream_table} created for table {table_name}")
+
+        except snowflake.connector.Error as e:
+            print("Snowflake Error: {0}".format(e))
+        except Exception as e:
+            return e 
+            
+
+create_stream("sales_stream", "sales")
+create_stream("insurance_stream", "insurance")
+create_stream("finance_stream","finance")
+create_stream("crm_stream",'Crm')
+create_stream("hr_stream","hr")
+create_stream("It_stream","it_department")
+
+
+
+
+
+
 
 #closing the cursor and connection
 snowflake_cursor.close()
 snowflake_conn.close()
+
+
+
+
