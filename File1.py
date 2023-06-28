@@ -120,7 +120,7 @@ def insert_data_into_sales(snowflake_conn, snowflake_cursor):
     VALUES (%s, %s, %s, %s, %s)
     '''
 
-    for i in range(1, 10001):
+    for i in range(1, 101):
         sales_id = i
         customer_name = fake.name()
         car_model = fake.word()
@@ -138,8 +138,8 @@ def insert_data_into_sales(snowflake_conn, snowflake_cursor):
     
     snowflake_conn.commit()
 
-# insert_data_into_sales(snowflake_conn, snowflake_cursor)
-# print("Data inserted into sales table")
+insert_data_into_sales(snowflake_conn, snowflake_cursor)
+print("Data inserted into sales table")
 
 
 #inserting data into insurance table
@@ -151,7 +151,7 @@ def insert_data_into_insurance(snowflake_conn,snowflake_cursor):
     VALUES (%s, %s, %s, %s, %s)
     '''
 
-    for i in range(1,1001):
+    for i in range(1,101):
         policy_id = i
         customer_name = fake.name()
         car_model = fake.word()
@@ -168,8 +168,8 @@ def insert_data_into_insurance(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-# insert_data_into_insurance(snowflake_conn, snowflake_cursor)
-# print("Data inserted into insurance table")
+insert_data_into_insurance(snowflake_conn, snowflake_cursor)
+print("Data inserted into insurance table")
 
 
 #inserting data into finance table
@@ -181,7 +181,7 @@ def insert_data_into_finance(snowflake_conn,snowflake_cursor):
     VALUES (%s, %s, %s, %s, %s)
     '''
 
-    for i in range(1, 1001):
+    for i in range(1, 101):
         finance_id = i
         customer_name = fake.name()
         car_model = fake.word()
@@ -198,8 +198,8 @@ def insert_data_into_finance(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-# insert_data_into_finance(snowflake_conn, snowflake_cursor)
-# print("Data inserted into finance table")
+insert_data_into_finance(snowflake_conn, snowflake_cursor)
+print("Data inserted into finance table")
 
 
 #inserting data into crm table
@@ -211,7 +211,7 @@ def insert_data_into_crm(snowflake_conn,snowflake_cursor):
     VALUES (%s, %s, %s, %s, %s)
     '''
 
-    for i in range(1, 1001):
+    for i in range(1, 101):
         customer_id = i
         customer_name = fake.name()
         email = fake.email()
@@ -228,8 +228,8 @@ def insert_data_into_crm(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-# insert_data_into_crm(snowflake_conn, snowflake_cursor)
-# print("Data inserted into crm table")
+insert_data_into_crm(snowflake_conn, snowflake_cursor)
+print("Data inserted into crm table")
 
 
 
@@ -243,7 +243,7 @@ def insert_data_into_hr(snowflake_conn,snowflake_cursor):
     '''
     job =['sales','crm','hr','it','front office']
     job_title = ['admin', 'java developer', 'python developer' ,'data scientist','data engineer','dot net developer','software developer','asociate software developer','process associate','Team lead','project manager','associate']
-    for i in range(1, 1001):
+    for i in range(1, 101):
         employee_id = i
         employee_name = fake.name()
         department = random.choice(job)
@@ -260,8 +260,8 @@ def insert_data_into_hr(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-# insert_data_into_hr(snowflake_conn, snowflake_cursor)
-# print("Data inserted into hr table")
+insert_data_into_hr(snowflake_conn, snowflake_cursor)
+print("Data inserted into hr table")
 
 
 #inserting data into It table
@@ -276,7 +276,7 @@ def insert_data_into_It(snowflake_conn,snowflake_cursor):
     priorities = ['Low', 'Medium', 'High']
     status = ['Open', 'In Progress', 'Closed']
 
-    for i in range(1, 1001):
+    for i in range(1, 101):
         ticket_id = i
         issue = fake.sentence(nb_words=6)
         priority = random.choice(priorities)
@@ -293,30 +293,30 @@ def insert_data_into_It(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-# insert_data_into_It(snowflake_conn, snowflake_cursor)
-# print("Data inserted into It table")
+insert_data_into_It(snowflake_conn, snowflake_cursor)
+print("Data inserted into It table")
 
 
-# creating the stream objects for each table to track the dml operations
-def create_stream(stream_table, table_name):
-        try:
-        # Create the stream
-            create_stream_query = f"CREATE STREAM {stream_table} ON TABLE {table_name}"
-            snowflake_cursor.execute(create_stream_query)
-            print(f"Stream {stream_table} created for table {table_name}")
+# # creating the stream objects for each table to track the dml operations
+# def create_stream(stream_table, table_name):
+#         try:
+#         # Create the stream
+#             create_stream_query = f"CREATE STREAM {stream_table} ON TABLE {table_name}"
+#             snowflake_cursor.execute(create_stream_query)
+#             print(f"Stream {stream_table} created for table {table_name}")
 
-        except snowflake.connector.Error as e:
-            print("Snowflake Error: {0}".format(e))
-        except Exception as e:
-            return e 
+#         except snowflake.connector.Error as e:
+#             print("Snowflake Error: {0}".format(e))
+#         except Exception as e:
+#             return e 
             
 
-create_stream("sales_stream", "sales")
-create_stream("insurance_stream", "insurance")
-create_stream("finance_stream","finance")
-create_stream("crm_stream",'Crm')
-create_stream("hr_stream","hr")
-create_stream("It_stream","it_department")
+# create_stream("sales_stream", "sales")
+# create_stream("insurance_stream", "insurance")
+# create_stream("finance_stream","finance")
+# create_stream("crm_stream",'Crm')
+# create_stream("hr_stream","hr")
+# create_stream("It_stream","it_department")
 
 
 
