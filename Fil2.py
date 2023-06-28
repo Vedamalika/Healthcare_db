@@ -22,7 +22,7 @@ snowflake_schema = 'PUBLIC'
 
 sqlite_db_file = '/home/kunjara/Documents/Automobile_db/Automobile.db'
 
-
+#1 copying data to insurance table
 def retrieve_data_from_snowflake():
     conn_snowflake = snowflake.connector.connect(
         user=snowflake_user,
@@ -41,19 +41,14 @@ def retrieve_data_from_snowflake():
         cursor_snowflake.execute(select_query)
         data = cursor_snowflake.fetchall()
         print("Data retrieved from Snowflake successfully.")
-    except ProgrammingError as e:
-        print(f"Error retrieving data from Snowflake: {e}")
+        return data
+    except Exception as e:
+        return e 
+    finally:
         cursor_snowflake.close()
         conn_snowflake.close()
-        return None
-
-    cursor_snowflake.close()
-    conn_snowflake.close()
-    return data
 
 def insert_data_into_sqlite(data):
-    if data is None:
-        return
 
     conn_sqlite = sqlite3.connect(sqlite_db_file)
     cursor_sqlite = conn_sqlite.cursor()
@@ -64,16 +59,15 @@ def insert_data_into_sqlite(data):
     '''
 
     try:
-        for row in data:
-            cursor_sqlite.execute(insert_query_sqlite, row)
-
+        cursor_sqlite.executemany(insert_query_sqlite, data)
         conn_sqlite.commit()
         print("Data inserted into SQLite successfully.")
     except sqlite3.Error as e:
-        print(f"Error inserting data into SQLite: {e}")
+        return e 
+    finally:
+        cursor_sqlite.close()
+        conn_sqlite.close()
 
-    cursor_sqlite.close()
-    conn_sqlite.close()
 
 # Retrieve data from Snowflake
 data = retrieve_data_from_snowflake()
@@ -82,7 +76,7 @@ data = retrieve_data_from_snowflake()
 insert_data_into_sqlite(data)
 
 
-
+#2. copying data to finance table
 def retrieve_data_from_snowflake():
     conn_snowflake = snowflake.connector.connect(
         user=snowflake_user,
@@ -101,19 +95,15 @@ def retrieve_data_from_snowflake():
         cursor_snowflake.execute(select_query)
         data = cursor_snowflake.fetchall()
         print("Data retrieved from Snowflake successfully.")
-    except ProgrammingError as e:
-        print(f"Error retrieving data from Snowflake: {e}")
+        return data
+    except Exception as e:
+        return e 
+    finally:
         cursor_snowflake.close()
         conn_snowflake.close()
-        return None
 
-    cursor_snowflake.close()
-    conn_snowflake.close()
-    return data
 
 def insert_data_into_sqlite(data):
-    if data is None:
-        return
 
     conn_sqlite = sqlite3.connect(sqlite_db_file)
     cursor_sqlite = conn_sqlite.cursor()
@@ -124,16 +114,15 @@ def insert_data_into_sqlite(data):
     '''
 
     try:
-        for row in data:
-            cursor_sqlite.execute(insert_query_sqlite, row)
-
+        cursor_sqlite.executemany(insert_query_sqlite, data)
         conn_sqlite.commit()
         print("Data inserted into SQLite successfully.")
     except sqlite3.Error as e:
-        print(f"Error inserting data into SQLite: {e}")
+        return e 
+    finally:
+        cursor_sqlite.close()
+        conn_sqlite.close()
 
-    cursor_sqlite.close()
-    conn_sqlite.close()
 
 # Retrieve data from Snowflake
 data = retrieve_data_from_snowflake()
@@ -142,8 +131,7 @@ data = retrieve_data_from_snowflake()
 insert_data_into_sqlite(data)
 
 
-
-
+#3. copying data to crm table
 def retrieve_data_from_snowflake():
     conn_snowflake = snowflake.connector.connect(
         user=snowflake_user,
@@ -156,45 +144,39 @@ def retrieve_data_from_snowflake():
 
     cursor_snowflake = conn_snowflake.cursor()
 
-    select_query = 'SELECT * FROM Crm'
+    select_query = 'SELECT * FROM finance'
 
     try:
         cursor_snowflake.execute(select_query)
         data = cursor_snowflake.fetchall()
         print("Data retrieved from Snowflake successfully.")
-    except ProgrammingError as e:
-        print(f"Error retrieving data from Snowflake: {e}")
+        return data
+    except Exception as e:
+        return e 
+    finally:
         cursor_snowflake.close()
         conn_snowflake.close()
-        return None
 
-    cursor_snowflake.close()
-    conn_snowflake.close()
-    return data
 
 def insert_data_into_sqlite(data):
-    if data is None:
-        return
-
     conn_sqlite = sqlite3.connect(sqlite_db_file)
     cursor_sqlite = conn_sqlite.cursor()
 
     insert_query_sqlite = '''
-    INSERT INTO Crm (customer_id, customer_name, email, phone_number, city)
+    INSERT INTO Crm(customer_id, customer_name, email, phone_number, city)
     VALUES (?, ?, ?, ?, ?)
     '''
 
     try:
-        for row in data:
-            cursor_sqlite.execute(insert_query_sqlite, row)
-
+        cursor_sqlite.executemany(insert_query_sqlite, data)
         conn_sqlite.commit()
         print("Data inserted into SQLite successfully.")
     except sqlite3.Error as e:
-        print(f"Error inserting data into SQLite: {e}")
+        return e 
+    finally:
+        cursor_sqlite.close()
+        conn_sqlite.close()
 
-    cursor_sqlite.close()
-    conn_sqlite.close()
 
 # Retrieve data from Snowflake
 data = retrieve_data_from_snowflake()
@@ -203,7 +185,7 @@ data = retrieve_data_from_snowflake()
 insert_data_into_sqlite(data)
 
 
-
+#4. copying data to hr table
 def retrieve_data_from_snowflake():
     conn_snowflake = snowflake.connector.connect(
         user=snowflake_user,
@@ -222,39 +204,34 @@ def retrieve_data_from_snowflake():
         cursor_snowflake.execute(select_query)
         data = cursor_snowflake.fetchall()
         print("Data retrieved from Snowflake successfully.")
-    except ProgrammingError as e:
-        print(f"Error retrieving data from Snowflake: {e}")
+        return data
+    except Exception as e:
+        return e 
+    finally:
         cursor_snowflake.close()
         conn_snowflake.close()
-        return None
 
-    cursor_snowflake.close()
-    conn_snowflake.close()
-    return data
 
 def insert_data_into_sqlite(data):
-    if data is None:
-        return
 
     conn_sqlite = sqlite3.connect(sqlite_db_file)
     cursor_sqlite = conn_sqlite.cursor()
 
     insert_query_sqlite = '''
-    INSERT INTO hr (employee_id, employee_name, department, position, hire_date)
+    INSERT INTO hr(employee_id, employee_name, department, position, hire_date)
     VALUES (?, ?, ?, ?, ?)
     '''
 
     try:
-        for row in data:
-            cursor_sqlite.execute(insert_query_sqlite, row)
-
+        cursor_sqlite.executemany(insert_query_sqlite, data)
         conn_sqlite.commit()
         print("Data inserted into SQLite successfully.")
     except sqlite3.Error as e:
-        print(f"Error inserting data into SQLite: {e}")
+        return e 
+    finally:
+        cursor_sqlite.close()
+        conn_sqlite.close()
 
-    cursor_sqlite.close()
-    conn_sqlite.close()
 
 # Retrieve data from Snowflake
 data = retrieve_data_from_snowflake()
@@ -263,6 +240,9 @@ data = retrieve_data_from_snowflake()
 insert_data_into_sqlite(data)
 
 
+
+
+#5. copying data to it_department  table
 def retrieve_data_from_snowflake():
     conn_snowflake = snowflake.connector.connect(
         user=snowflake_user,
@@ -281,39 +261,34 @@ def retrieve_data_from_snowflake():
         cursor_snowflake.execute(select_query)
         data = cursor_snowflake.fetchall()
         print("Data retrieved from Snowflake successfully.")
-    except ProgrammingError as e:
-        print(f"Error retrieving data from Snowflake: {e}")
+        return data
+    except Exception as e:
+        return e 
+    finally:
         cursor_snowflake.close()
         conn_snowflake.close()
-        return None
 
-    cursor_snowflake.close()
-    conn_snowflake.close()
-    return data
 
 def insert_data_into_sqlite(data):
-    if data is None:
-        return
 
     conn_sqlite = sqlite3.connect(sqlite_db_file)
     cursor_sqlite = conn_sqlite.cursor()
 
     insert_query_sqlite = '''
-    INSERT INTO it_department (ticket_id, issue, priority, assigned_to, status)
+    INSERT INTO it_department(ticket_id, issue, priority, assigned_to, status)
     VALUES (?, ?, ?, ?, ?)
     '''
 
     try:
-        for row in data:
-            cursor_sqlite.execute(insert_query_sqlite, row)
-
+        cursor_sqlite.executemany(insert_query_sqlite, data)
         conn_sqlite.commit()
         print("Data inserted into SQLite successfully.")
     except sqlite3.Error as e:
-        print(f"Error inserting data into SQLite: {e}")
+        return e 
+    finally:
+        cursor_sqlite.close()
+        conn_sqlite.close()
 
-    cursor_sqlite.close()
-    conn_sqlite.close()
 
 # Retrieve data from Snowflake
 data = retrieve_data_from_snowflake()
@@ -322,7 +297,7 @@ data = retrieve_data_from_snowflake()
 insert_data_into_sqlite(data)
 
 
-
+#6. copying data to sales table
 def retrieve_data_from_snowflake():
     conn_snowflake = snowflake.connector.connect(
         user=snowflake_user,
@@ -341,42 +316,50 @@ def retrieve_data_from_snowflake():
         cursor_snowflake.execute(select_query)
         data = cursor_snowflake.fetchall()
         print("Data retrieved from Snowflake successfully.")
-    except ProgrammingError as e:
-        print(f"Error retrieving data from Snowflake: {e}")
+        return data
+    except Exception as e:
+        return e 
+    finally:
         cursor_snowflake.close()
         conn_snowflake.close()
-        return None
 
-    cursor_snowflake.close()
-    conn_snowflake.close()
-    return data
 
 def insert_data_into_sqlite(data):
-    if data is None:
-        return
 
     conn_sqlite = sqlite3.connect(sqlite_db_file)
     cursor_sqlite = conn_sqlite.cursor()
 
     insert_query_sqlite = '''
-    INSERT INTO sales (sales_id, customer_name, car_model, purchase_date, purchase_amount)
+    INSERT INTO sales(sales_id, customer_name, car_model, purchase_date, purchase_amount)
     VALUES (?, ?, ?, ?, ?)
     '''
 
     try:
-        for row in data:
-            cursor_sqlite.execute(insert_query_sqlite, row)
-
+        cursor_sqlite.executemany(insert_query_sqlite, data)
         conn_sqlite.commit()
         print("Data inserted into SQLite successfully.")
     except sqlite3.Error as e:
-        print(f"Error inserting data into SQLite: {e}")
+        return e 
+    finally:
+        cursor_sqlite.close()
+        conn_sqlite.close()
 
-    cursor_sqlite.close()
-    conn_sqlite.close()
 
 # Retrieve data from Snowflake
 data = retrieve_data_from_snowflake()
 
 # Insert data into SQLite
 insert_data_into_sqlite(data)
+
+
+
+
+
+
+
+
+
+
+
+
+
