@@ -2,7 +2,7 @@ import sqlite3
 
 def create_sqlite_connection():
     try:
-        conn_sqlite = sqlite3.connect('healthcare.db')
+        conn_sqlite = sqlite3.connect('Automobile.db')
         print("SQLite connection created")
         return conn_sqlite
 
