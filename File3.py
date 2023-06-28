@@ -120,63 +120,57 @@ snowflake_schema = 'PUBLIC'
 
 sqlite_db_file = '/home/kunjara/Documents/Automobile_db/Automobile.db'
 
-# def retrieve_data_from_snowflake():
-#     conn_snowflake = snowflake.connector.connect(
-#         user=snowflake_user,
-#         password=snowflake_password,
-#         account=snowflake_account,
-#         warehouse=snowflake_warehouse,
-#         database=snowflake_database,
-#         schema=snowflake_schema
-#     )
 
-#     cursor_snowflake = conn_snowflake.cursor()
 
-#     select_query = 'SELECT * FROM insurance'
 
-#     try:
-#         cursor_snowflake.execute(select_query)
-#         data = cursor_snowflake.fetchall()
-#         print("Data retrieved from Snowflake successfully.")
-#     except ProgrammingError as e:
-#         print(f"Error retrieving data from Snowflake: {e}")
-#         cursor_snowflake.close()
-#         conn_snowflake.close()
-#         return None
+def retrieve_data_from_snowflake():
+    conn_snowflake = snowflake.connector.connect(
+        user=snowflake_user,
+        password=snowflake_password,
+        account=snowflake_account,
+        warehouse=snowflake_warehouse,
+        database=snowflake_database,
+        schema=snowflake_schema
+    )
 
-#     cursor_snowflake.close()
-#     conn_snowflake.close()
-#     return data
+    cursor_snowflake = conn_snowflake.cursor()
 
-# def insert_data_into_sqlite(data):
-#     if data is None:
-#         return
+    select_query = 'SELECT * FROM insurance'
 
-#     conn_sqlite = sqlite3.connect(sqlite_db_file)
-#     cursor_sqlite = conn_sqlite.cursor()
+    try:
+        cursor_snowflake.execute(select_query)
+        data = cursor_snowflake.fetchall()
+        print("Data retrieved from Snowflake")
+    except Exception as e:
+        return e 
+    cursor_snowflake.close()
+    conn_snowflake.close()
+    
+data = retrieve_data_from_snowflake()
 
-#     insert_query_sqlite = '''
-#     INSERT INTO insurance (policy_id, customer_name, car_model, policy_type, premium_amount)
-#     VALUES (?, ?, ?, ?, ?)
-#     '''
+def insert_data_into_sqlite(data):
 
-#     try:
-#         for row in data:
-#             cursor_sqlite.execute(insert_query_sqlite, row)
+    conn_sqlite = sqlite3.connect(sqlite_db_file)
+    cursor_sqlite = conn_sqlite.cursor()
 
-#         conn_sqlite.commit()
-#         print("Data inserted into SQLite successfully.")
-#     except sqlite3.Error as e:
-#         print(f"Error inserting data into SQLite: {e}")
+    insert_query_sqlite = '''
+    INSERT INTO insurance (policy_id, customer_name, car_model, policy_type, premium_amount)
+    VALUES (?, ?, ?, ?, ?)
+    '''
 
-#     cursor_sqlite.close()
-#     conn_sqlite.close()
+    try:
+        for row in data:
+            cursor_sqlite.execute(insert_query_sqlite, row)
 
-# # Retrieve data from Snowflake
-# data = retrieve_data_from_snowflake()
+        conn_sqlite.commit()
+        print("Data inserted into SQLite successfully.")
+    except sqlite3.Error as e:
+        return e 
 
-# # Insert data into SQLite
-# insert_data_into_sqlite(data)
+    cursor_sqlite.close()
+    conn_sqlite.close()
+
+insert_data_into_sqlite(data)
 
 
 
