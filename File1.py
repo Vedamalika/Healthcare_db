@@ -295,6 +295,6 @@ def insert_data_into_It(snowflake_conn,snowflake_cursor):
 insert_data_into_It(snowflake_conn, snowflake_cursor)
 print("Data inserted into It table")
 
-#close cursor and connection
+#closing the cursor and connection
 snowflake_cursor.close()
 snowflake_conn.close()
