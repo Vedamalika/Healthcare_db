@@ -1,4 +1,6 @@
+import snowflake.connector
 import sqlite3
+from snowflake.connector.errors import ProgrammingError
 
 def create_sqlite_connection():
     try:
@@ -104,4 +106,8 @@ def create_tables_sqlite(conn):
 
 # calling the function for Creating the tables in SQLite
 create_tables_sqlite(conn_sqlite)
+
+
+
+
 
