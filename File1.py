@@ -241,12 +241,12 @@ def insert_data_into_hr(snowflake_conn,snowflake_cursor):
     INSERT INTO hr (employee_id, employee_name, department, position, hire_date)
     VALUES (%s, %s, %s, %s, %s)
     '''
-    
+    job =['sales','crm','hr','it','front office']
     job_title = ['admin', 'java developer', 'python developer' ,'data scientist','data engineer','dot net developer','software developer','asociate software developer','process associate','Team lead','project manager','associate']
     for i in range(1, 1001):
         employee_id = i
         employee_name = fake.name()
-        department = fake.job()
+        department = random.choice(job)
         position = random.choice(job_title)
         hire_date = fake.date()
 
