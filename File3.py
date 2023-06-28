@@ -102,5 +102,6 @@ def create_tables_sqlite(conn):
 
     conn.close()
 
-# Creating the tables in SQLite
+# calling the function for Creating the tables in SQLite
 create_tables_sqlite(conn_sqlite)
+

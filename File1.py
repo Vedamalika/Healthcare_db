@@ -151,7 +151,7 @@ def insert_data_into_insurance(snowflake_conn,snowflake_cursor):
     VALUES (%s, %s, %s, %s, %s)
     '''
 
-    for i in range(1,10001):
+    for i in range(1,1001):
         policy_id = i
         customer_name = fake.name()
         car_model = fake.word()
@@ -181,7 +181,7 @@ def insert_data_into_finance(snowflake_conn,snowflake_cursor):
     VALUES (%s, %s, %s, %s, %s)
     '''
 
-    for i in range(1, 10001):
+    for i in range(1, 1001):
         finance_id = i
         customer_name = fake.name()
         car_model = fake.word()
@@ -211,7 +211,7 @@ def insert_data_into_crm(snowflake_conn,snowflake_cursor):
     VALUES (%s, %s, %s, %s, %s)
     '''
 
-    for i in range(1, 1000001):
+    for i in range(1, 1001):
         customer_id = i
         customer_name = fake.name()
         email = fake.email()
@@ -242,7 +242,7 @@ def insert_data_into_hr(snowflake_conn,snowflake_cursor):
     VALUES (%s, %s, %s, %s, %s)
     '''
 
-    for i in range(1, 1000001):
+    for i in range(1, 1001):
         employee_id = i
         employee_name = fake.name()
         department = fake.job()
@@ -275,7 +275,7 @@ def insert_data_into_It(snowflake_conn,snowflake_cursor):
     priorities = ['Low', 'Medium', 'High']
     status = ['Open', 'In Progress', 'Closed']
 
-    for i in range(1, 1000001):
+    for i in range(1, 1001):
         ticket_id = i
         issue = fake.sentence(nb_words=6)
         priority = random.choice(priorities)
