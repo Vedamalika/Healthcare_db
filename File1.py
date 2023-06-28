@@ -138,8 +138,8 @@ def insert_data_into_sales(snowflake_conn, snowflake_cursor):
     
     snowflake_conn.commit()
 
-insert_data_into_sales(snowflake_conn, snowflake_cursor)
-print("Data inserted into sales table")
+# insert_data_into_sales(snowflake_conn, snowflake_cursor)
+# print("Data inserted into sales table")
 
 
 #inserting data into insurance table
@@ -168,8 +168,8 @@ def insert_data_into_insurance(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-insert_data_into_insurance(snowflake_conn, snowflake_cursor)
-print("Data inserted into insurance table")
+# insert_data_into_insurance(snowflake_conn, snowflake_cursor)
+# print("Data inserted into insurance table")
 
 
 #inserting data into finance table
@@ -198,8 +198,8 @@ def insert_data_into_finance(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-insert_data_into_finance(snowflake_conn, snowflake_cursor)
-print("Data inserted into finance table")
+# insert_data_into_finance(snowflake_conn, snowflake_cursor)
+# print("Data inserted into finance table")
 
 
 #inserting data into crm table
@@ -228,8 +228,8 @@ def insert_data_into_crm(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-insert_data_into_crm(snowflake_conn, snowflake_cursor)
-print("Data inserted into crm table")
+# insert_data_into_crm(snowflake_conn, snowflake_cursor)
+# print("Data inserted into crm table")
 
 
 
@@ -260,8 +260,8 @@ def insert_data_into_hr(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-insert_data_into_hr(snowflake_conn, snowflake_cursor)
-print("Data inserted into hr table")
+# insert_data_into_hr(snowflake_conn, snowflake_cursor)
+# print("Data inserted into hr table")
 
 
 #inserting data into It table
@@ -293,8 +293,8 @@ def insert_data_into_It(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-insert_data_into_It(snowflake_conn, snowflake_cursor)
-print("Data inserted into It table")
+# insert_data_into_It(snowflake_conn, snowflake_cursor)
+# print("Data inserted into It table")
 
 
 # # creating the stream objects for each table to track the dml operations
@@ -319,6 +319,16 @@ print("Data inserted into It table")
 # create_stream("It_stream","it_department")
 
 
+ # Query the streams
+snowflake_cursor.execute("SELECT * FROM finance_stream")
+result1 = snowflake_cursor.fetchall()
+for row in result1:
+    print(row)
+
+snowflake_cursor.execute("SELECT * FROM insurance_stream")
+result2 = snowflake_cursor.fetchall()
+for row in result2:
+    print(row)
 
 
 
