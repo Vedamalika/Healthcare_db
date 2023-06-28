@@ -168,8 +168,8 @@ def insert_data_into_insurance(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-insert_data_into_insurance(snowflake_conn, snowflake_cursor)
-print("Data inserted into insurance table")
+# insert_data_into_insurance(snowflake_conn, snowflake_cursor)
+# print("Data inserted into insurance table")
 
 
 #inserting data into finance table
@@ -198,8 +198,8 @@ def insert_data_into_finance(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-insert_data_into_finance(snowflake_conn, snowflake_cursor)
-print("Data inserted into finance table")
+# insert_data_into_finance(snowflake_conn, snowflake_cursor)
+# print("Data inserted into finance table")
 
 
 #inserting data into crm table
@@ -228,8 +228,8 @@ def insert_data_into_crm(snowflake_conn,snowflake_cursor):
     
     snowflake_conn.commit()
 
-insert_data_into_crm(snowflake_conn, snowflake_cursor)
-print("Data inserted into crm table")
+# insert_data_into_crm(snowflake_conn, snowflake_cursor)
+# print("Data inserted into crm table")
 
 
 
@@ -241,12 +241,13 @@ def insert_data_into_hr(snowflake_conn,snowflake_cursor):
     INSERT INTO hr (employee_id, employee_name, department, position, hire_date)
     VALUES (%s, %s, %s, %s, %s)
     '''
-
+    
+    job_title = ['admin', 'java developer', 'python developer' ,'data scientist','data engineer','dot net developer','software developer','asociate software developer','process associate','Team lead','project manager','associate']
     for i in range(1, 1001):
         employee_id = i
         employee_name = fake.name()
         department = fake.job()
-        position = fake.job_title()
+        position = random.choice(job_title)
         hire_date = fake.date()
 
         try:
