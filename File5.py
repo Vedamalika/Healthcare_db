@@ -81,6 +81,7 @@ cursor = connection.cursor()
 #     )
 # ''')
 
+
 # def create_insert_trigger(table_name):
 #     cursor.execute('''
 #         CREATE TRIGGER IF NOT EXISTS cdc_insert_trigger_{}
