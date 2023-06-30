@@ -135,7 +135,7 @@ def create_tables_mysql(conn):
 create_tables_mysql(conn_mysql)
 
 
-#inserting data into the tables
+
 
 
 
