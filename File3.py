@@ -1,4 +1,3 @@
-import snowflake.connector
 import sqlite3
 from snowflake.connector.errors import ProgrammingError
 
