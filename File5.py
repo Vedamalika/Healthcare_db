@@ -326,7 +326,7 @@ data = retrieve_data_from_snowflake()
 insert_data_into_mysql(data)
 
 
-6. Copying data to the sales table
+#6. Copying data to the sales table
 def retrieve_data_from_snowflake():
     conn_snowflake = snowflake.connector.connect(
         user=snowflake_user,
