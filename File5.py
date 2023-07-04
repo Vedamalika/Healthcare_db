@@ -90,7 +90,7 @@ data = retrieve_data_from_snowflake()
 insert_data_into_mysql(data)
 
 
-2. Copying data to the finance table
+#2. Copying data to the finance table
 def retrieve_data_from_snowflake():
     conn_snowflake = snowflake.connector.connect(
         user=snowflake_user,
